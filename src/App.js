@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -43,11 +44,15 @@ class App extends Component {
   
   render (){
     const styles = {
-      backgroundColor: 'white',
+      backgroundColor: 'yellow',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'blue',
+        color: 'white'
+      }
     }
 
     //RENDERING OUR DYNAMIC CONTENT USING CONDITIONAL STATEMENT
@@ -65,24 +70,45 @@ class App extends Component {
           })}
         </div>
       )
+      styles.backgroundColor = "red"
+      styles[':hover'].backgroundColor="grey"
+      /**
+       * styles[':hover'] = {
+        backgroundColor: 'grey',
+        color: 'black'
+      }
+       */
     }
+
+    const classes = [];
+    if (this.state.persons.length <= 2){
+      classes.push('red')
+    }
+    if (this.state.persons.length <=1){
+      classes.push('bold')
+    }
+    if(this.state.persons.lenght === 1){
+      classes.push('bolder')
+    }
+
     return (
-      <div className="App">
-        <h1>Hi, I am A react</h1>
-        <p>This is really working!!!</p>
-        <button onClick={this.togglePersonsHandler}
-        style={styles}>Toggle persons</button>
-        {myperson}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, I am A react</h1>
+          <p className={classes.join(" ")}>This is really working!!!</p>
+          <button onClick={this.togglePersonsHandler}
+          style={styles}>Toggle persons</button>
+          {myperson}
+        </div>
+      </StyleRoot>
     );
-    //properties means the atrributes we had to the function component
-    // return React.CreateElement('div', {className: 'App'}, React.createElement('h1', null, "Does this work now?"))
+    /**properties means the atrributes we had to the function component
+    return React.CreateElement('div', 
+    {className: 'App'}, React.createElement('h1', null, "Does this work now?"))*/
   }
-    
-  
 }
 
-export default App;
+export default Radium(App);
 
 
 
