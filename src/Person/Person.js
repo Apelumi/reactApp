@@ -1,17 +1,17 @@
 import React from "react";
-import "./Person.css";
-import styled from 'styled-components';
+//import "./Person.css";
+import styled from "styled-components";
 
 const StyleDiv = styled.div`
-width: 60%;
+        width: 60%;
         margin: 16px auto;
         border: 1px solid #eee;
         box-shadow: 0px 2px 3px #ccc;
         padding: 16px;
         text-align: center;
         
-        '@media (min-width:500px)': {
-            width: '450px'
+        @media (min-width:500px){
+            width: 450px;
         }`
 
 const person = (props) => {
