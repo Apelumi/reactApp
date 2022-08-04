@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -92,15 +91,14 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1>Hi, I am A react</h1>
-          <p className={classes.join(" ")}>This is really working!!!</p>
-          <button onClick={this.togglePersonsHandler}
-          style={styles}>Toggle persons</button>
-          {myperson}
-        </div>
-      </StyleRoot>
+      <div className="App">
+        <h1>Hi, I am A react</h1>
+        <p className={classes.join(" ")}>This is really working!!!</p>
+        <button onClick={this.togglePersonsHandler}
+        style={styles}>Toggle persons</button>
+        {myperson}
+      </div>
+    
     );
     /**properties means the atrributes we had to the function component
     return React.CreateElement('div', 
@@ -108,7 +106,7 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+export default App;
 
 
 
