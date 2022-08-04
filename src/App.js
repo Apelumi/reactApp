@@ -17,13 +17,13 @@ class App extends Component {
   //now we are finding that one single person index by using the findindex() method we want to call
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(pInput => {
-      return pInput.id = id;
+      return pInput.id === id;
     })
     const person = {...this.state.persons[personIndex]};
     person.name = event.target.value;
 
     //now we need to update the array at the position 
-    const newperson = [...this.state.persons];
+    const newperson = [...this.state.persons]; // creation of a new copy of persons to make newpersons to be useful and non-mutating
     newperson[personIndex] = person
 
 
