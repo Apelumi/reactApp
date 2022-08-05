@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
+import styled from 'styled-components'
 import './App.css';
 import Person from './Person/Person';
+
+const StyledButton = styled.button`
+    background-color: ${props => props.anyprop ? 'red': 'yellow'};
+    font: inherit;
+    border: 1px solid blue;
+    padding: 8px;
+    cursor: pointer;
+
+    &:hover{
+      background-color: ${props => props.anyprop? 'grey': 'blue'};
+      color: white;
+    }
+`;
 
 class App extends Component {
   state = {
@@ -42,7 +56,7 @@ class App extends Component {
   }
   
   render (){
-    const styles = {
+    /**const styles = {
       backgroundColor: 'yellow',
       font: 'inherit',
       border: '1px solid blue',
@@ -52,7 +66,7 @@ class App extends Component {
         backgroundColor: 'blue',
         color: 'white'
       }
-    }
+    }*/
 
     //RENDERING OUR DYNAMIC CONTENT USING CONDITIONAL STATEMENT
     let myperson = null;
@@ -69,9 +83,9 @@ class App extends Component {
           })}
         </div>
       )
-      styles.backgroundColor = "red"
+      /**styles.backgroundColor = "red"
       styles[':hover'].backgroundColor="grey"
-      /**
+
        * styles[':hover'] = {
         backgroundColor: 'grey',
         color: 'black'
@@ -94,8 +108,7 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I am A react</h1>
         <p className={classes.join(" ")}>This is really working!!!</p>
-        <button onClick={this.togglePersonsHandler}
-        style={styles}>Toggle persons</button>
+        <StyledButton anyprop={this.state.showname} onClick={this.togglePersonsHandler}>Toggle persons</StyledButton>
         {myperson}
       </div>
     
