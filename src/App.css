@@ -12,3 +12,17 @@
   font-size: x-large;
   font-weight: 500;
 }
+
+.button {
+  background-color: yellow;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(77, 114, 17);
+    color: white;
+}
+
