@@ -13,7 +13,7 @@
   font-weight: 500;
 }
 
-.button {
+.Button {
   background-color: yellow;
   font: inherit;
   border: 1px solid blue;
@@ -21,7 +21,7 @@
   cursor: pointer;
 }
 
-.button:hover {
+.Button:hover {
     background-color: rgb(77, 114, 17);
     color: white;
 }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.module.css';
 import Person from './Person/Person';
 
-/**const StyledButton = styled.button`
+/** const StyledButton = styled.button`
     background-color: ${props => props.anyprop ? 'red': 'yellow'};
     font: inherit;
     border: 1px solid blue;
@@ -92,22 +92,22 @@ class App extends Component {
        */
     }
 
-    const classes = [];
+    const Textclasses = [];
     if (this.state.persons.length <= 2){
-      classes.push('red')
+      Textclasses.push('red')
     }
     if (this.state.persons.length <=1){
-      classes.push('bold')
+      Textclasses.push('bold')
     }
     if(this.state.persons.lenght === 1){
-      classes.push('bolder')
+      Textclasses.push('bolder')
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I am A react</h1>
-        <p className={classes.join(" ")}>This is really working!!!</p>
-        <button className='button' onClick={this.togglePersonsHandler}>Toggle persons</button>
+        <p className={Textclasses.join(" ")}>This is really working!!!</p>
+        <button className={classes.Button} onClick={this.togglePersonsHandler}>Toggle persons</button>
         {myperson}
       </div>
     

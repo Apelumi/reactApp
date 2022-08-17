@@ -1,6 +1,6 @@
 import React from "react";
-//import "./Person.css";
-import styled from "styled-components";
+import classes from "./Person.module.css";
+/** import styled from "styled-components"; 
 
 const StyleDiv = styled.div`
         width: 60%;
@@ -12,7 +12,7 @@ const StyleDiv = styled.div`
         
         @media (min-width:500px){
             width: 450px;
-        }`
+        }` */
 
 const person = (props) => {
     /**const styles = {
@@ -23,12 +23,12 @@ const person = (props) => {
     */
     return (
         //<div className="Person" style={styles}>
-        <StyleDiv>
+        <div className={classes.Person}>
             <p onClick={props.click}>I'm a {props.name} and i'm {props.age}years old</p>
             <p>{props.children}</p>
             {/** this is two way binding */}
             <input type="text" onChange={props.changed} value={props.name}/>
-        </StyleDiv>
+        </div>
         //</div>
     )
 }
