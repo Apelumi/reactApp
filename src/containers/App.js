@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import classes from './App.module.css';
-import Person from './Person/Person';
+import classes from './App.css';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 /** const StyledButton = styled.button`
     background-color: ${props => props.anyprop ? 'red': 'yellow'};
@@ -69,19 +70,26 @@ class App extends Component {
 
     //RENDERING OUR DYNAMIC CONTENT USING CONDITIONAL STATEMENT
     let myperson = null;
+
     if (this.state.showname === true) {
       myperson = (
-        <div>
-          {this.state.persons.map((persons, index) => {
+        <div>  {/**in here you can as well delete the wrapping div */}
+          <Persons 
+            persons = {this.state.persons}
+            clickdel = {this.deletePersonsHandler}
+            changehand = {this.nameChangedHandler}/>
+          {/**{this.state.persons.map((persons, index) => {
             return <Person 
             click = {() => {this.deletePersonsHandler(index)}}
             name= {persons.name} 
             age={persons.age}
             key={persons.id}
             changed ={(event) => this.nameChangedHandler(event, persons.id)}/>
-          })}
+          })} */}
         </div>
       )
+
+      /** btnClass.push(classes.Red) */
       /**styles.backgroundColor = "red"
       styles[':hover'].backgroundColor="grey"
 
@@ -92,22 +100,15 @@ class App extends Component {
        */
     }
 
-    const Textclasses = [];
-    if (this.state.persons.length <= 2){
-      Textclasses.push('red')
-    }
-    if (this.state.persons.length <=1){
-      Textclasses.push('bold')
-    }
-    if(this.state.persons.lenght === 1){
-      Textclasses.push('bolder')
-    }
+
 
     return (
       <div className={classes.App}>
-        <h1>Hi, I am A react</h1>
-        <p className={Textclasses.join(" ")}>This is really working!!!</p>
-        <button className={classes.Button} onClick={this.togglePersonsHandler}>Toggle persons</button>
+        <Cockpit 
+        title = {this.props.appTitle}
+        clicked = {this.togglePersonsHandler}
+        showname = {this.state.showname}
+        persons = {this.state.persons}/>
         {myperson}
       </div>
     
