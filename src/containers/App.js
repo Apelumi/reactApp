@@ -17,6 +17,13 @@ import Cockpit from '../components/Cockpit/Cockpit';
 `;*/
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log("[App.js] constructor");
+  }
+
+
+
   state = {
     persons: [
       {id: "a1", name : "max", age: 28},
@@ -27,6 +34,20 @@ class App extends Component {
     showname: false
   }
 
+  //getDerivedStateFromProps(props, state)
+  static getDerivedStateFromProps(props, state) {
+    console.log("[App.js] getDerivedStateFromProps", props);
+    return state;
+  }
+
+ /** componentWillMount(){
+    console.log("[App.js] componentWillMount");
+  }*/ 
+
+  //After the render methos has run then the componentDidMount() will run
+  componentDidMount(){
+    console.log("[App.js] componentDidMount");
+  }
   // we updated this handler for the person into which input field we typed 
   //now we are finding that one single person index by using the findindex() method we want to call
   nameChangedHandler = (event, id) => {
@@ -56,6 +77,8 @@ class App extends Component {
   }
   
   render (){
+    console.log("[App.js] render")
+
     /**const styles = {
       backgroundColor: 'yellow',
       font: 'inherit',

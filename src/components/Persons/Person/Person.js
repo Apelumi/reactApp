@@ -15,6 +15,7 @@ const StyleDiv = styled.div`
         }` */
 
 const person = (props) => {
+    console.log("[App.js] rendering...");
     /**const styles = {
         '@media (min-width:500px)': {
             width: '450px'
