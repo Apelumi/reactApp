@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Aux from "../../../hoc/Aux";
 import classes from "./Person.css";
 /** import styled from "styled-components"; 
 
@@ -18,14 +19,16 @@ class Person extends Component {
         console.log("[App.js] rendering...");
         return (
             //<div className="Person" style={styles}>
-            <div className={classes.Person}>
+            // <div className={classes.Person}>
+            <Aux>
                 <p onClick={this.props.click}>I'm a {this.props.name} and i'm {this.props.age}years old</p>
                 <p>{this.props.children}</p>
                 {/** this is two way binding */}
                 <input type="text" 
                 onChange={this.props.changed} 
                 value={this.props.name}/>
-            </div>
+            </Aux>
+            // </div>
             //</div>
         );  
     }

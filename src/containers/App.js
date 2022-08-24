@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 
 /** const StyledButton = styled.button`
     background-color: ${props => props.anyprop ? 'red': 'yellow'};
@@ -142,7 +143,7 @@ class App extends Component {
 
 
     return (
-      <div className={classes.App}>
+      <WithClass classes={classes.App}>
         <button className={classes.Button} type="text" onClick={()=> {this.setState({
           showcock:false
         })}}>cleanupWorkWithuseEffect</button>
@@ -154,7 +155,7 @@ class App extends Component {
         }
         {myperson}
         
-      </div>
+      </WithClass>
     
     );
     /**properties means the atrributes we had to the function component
