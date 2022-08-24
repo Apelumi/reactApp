@@ -31,7 +31,8 @@ class App extends Component {
       {id: "a3", name : "maria", age: 29},
     ],
     otherstate : "some other state",
-    showname: false
+    showname: false,
+    showcock: true,
   }
 
   //getDerivedStateFromProps(props, state)
@@ -47,6 +48,21 @@ class App extends Component {
   //After the render methos has run then the componentDidMount() will run
   componentDidMount(){
     console.log("[App.js] componentDidMount");
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    console.log("[App.js] shouldComponentUpdate");
+    return true;
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState){
+    console.log("[App.js] getSnapshotBeforeUpdate");
+    return {message: "snapped right now!"};
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot){
+    console.log("[App.js] componentDidUpdate");
+    console.log(snapshot);
   }
   // we updated this handler for the person into which input field we typed 
   //now we are finding that one single person index by using the findindex() method we want to call
@@ -127,12 +143,17 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        <Cockpit 
+        <button className={classes.Button} type="text" onClick={()=> {this.setState({
+          showcock:false
+        })}}>cleanupWorkWithuseEffect</button>
+        {this.state.showcock ?(<Cockpit 
         title = {this.props.appTitle}
         clicked = {this.togglePersonsHandler}
         showname = {this.state.showname}
-        persons = {this.state.persons}/>
+        personsLength = {this.state.persons.length}/>) : null
+        }
         {myperson}
+        
       </div>
     
     );

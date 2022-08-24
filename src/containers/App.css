@@ -2,20 +2,21 @@
   text-align: center;
 }
 
-/**.Button {
-  background-color: yellow;
+.Button {
+  background-color: rgb(129, 22, 76);
   font: inherit;
   border: 1px solid blue;
   padding: 8px;
   cursor: pointer;
+  color: beige;
 }
 
 .Button:hover {
-    background-color: rgb(77, 114, 17);
+    background-color: rgb(34, 21, 28);
     color: white;
 }
 
-.Button.Red {
+/** .Button.Red {
   background-color: red;
 }
 

@@ -1,20 +1,43 @@
-import React from "react";
+import React, {useEffect} from "react";
 import classes from "./cockpit.css";
 
-const cockpit = (props) => {
+const Cockpit = (props) => {
+  useEffect(()=> {
+    console.log("[Cockpit.js] this is useEffect react hook and this is not a lifecycle hook");
+    //some http request
+    //now we are controlling the useEffect nehaviour
+    const timer = setTimeout(()=> {
+      alert("your data is saved to the cloud")
+    }, 1000);
+    //you can do a clean up work here and this function will run after every rendered cycle
+    return () => {
+      clearTimeout(timer);
+      console.log("[cockpit.js] rendered clean up work in useEffect")
+    }
+  }, //this will rerendered only when the persons attributes is changed
+  //[props.persons] otherwise if no particlar rendering based changes
+  []);
+  useEffect(()=>{
+    console.log("[cockpit.js] data is not saved to the cloud");
+
+    return ()=>{
+      console.log("[cockpit.js] rendered clean up work 2nd time using useEffect");
+    }
+  });
+
   const Textclass = [];
   let btnClass = "";
   if (props.showname === true){
     btnClass = classes.Red;
   }
 
-  if (props.persons.length <= 2){
+  if (props.personsLength <= 2){
     Textclass.push(classes.red);
   }
-  if (props.persons.length <=1){
+  if (props.personsLength <=1){
     Textclass.push(classes.bold);
   }
-  if(props.persons.length === 1){
+  if(props.personsLength === 1){
     Textclass.push(classes.bolder);
   }
   return (
@@ -27,4 +50,4 @@ const cockpit = (props) => {
   );
 };
 
-export default cockpit;
+export default React.memo(Cockpit);
