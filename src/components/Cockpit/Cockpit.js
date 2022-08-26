@@ -1,5 +1,6 @@
 import React, {useEffect, useRef} from "react";
 import classes from "./cockpit.css";
+import AuthContext from "../../context/auth-context";
 
 const Cockpit = (props) => {
   const toggleBtnRef = useRef(null);
@@ -8,13 +9,13 @@ const Cockpit = (props) => {
     console.log("[Cockpit.js] this is useEffect react hook and this is not a lifecycle hook");
     //some http request
     //now we are controlling the useEffect nehaviour
-    const timer = setTimeout(()=> {
-      alert("your data is saved to the cloud")
-    }, 1000);
+    // const timer = setTimeout(()=> {
+    //   alert("your data is saved to the cloud")
+    // }, 1000);
     toggleBtnRef.current.click();
     //you can do a clean up work here and this function will run after every rendered cycle
     return () => {
-      clearTimeout(timer);
+      // clearTimeout(timer);
       console.log("[cockpit.js] rendered clean up work in useEffect")
     }
   }, //this will rerendered only when the persons attributes is changed
@@ -49,6 +50,9 @@ const Cockpit = (props) => {
       <p className={Textclass.join( " " )}>This is really working!!!</p>
       <button ref={toggleBtnRef} className={btnClass} 
       onClick={props.clicked}>Toggle persons</button>
+      <AuthContext.Consumer>
+        {context => <button onClick={context.login}>LogIn</button>}
+      </AuthContext.Consumer>
     </div>
   );
 };

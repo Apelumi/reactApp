@@ -44,11 +44,14 @@ class Persons extends Component {
     console.log("[App.js] rendering")
     return (this.props.persons.map((persons, index) => {
       return <Person 
-      click = {() => {this.props.clickdel(index)}}
-      name= {persons.name} 
-      age={persons.age}
-      key={persons.id}
-      changed ={(event) => this.props.changehand(event, persons.id)}/>
+        click = {() => {this.props.clickdel(index)}}
+        name= {persons.name} 
+        age={persons.age}
+        key={persons.id}
+        changed ={(event) => this.props.changehand(event, persons.id)}
+        isAuth = {this.props.isAuthenticate}
+        />
+      
     }))
   }
 }

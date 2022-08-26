@@ -4,6 +4,7 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import withClass from '../hoc/withClass';
 import Aux from '../hoc/Aux';
+import AuthContext from '../context/auth-context';
 
 /** const StyledButton = styled.button`
     background-color: ${props => props.anyprop ? 'red': 'yellow'};
@@ -35,7 +36,8 @@ class App extends Component {
     otherstate : "some other state",
     showname: false,
     showcock: true,
-    changeCounter: 0
+    changeCounter: 0,
+    authenticated: false
   }
 
   //getDerivedStateFromProps(props, state)
@@ -100,6 +102,10 @@ class App extends Component {
     persons.splice(personIndex, 1) //splicing the persons object here has already made me mutate the original data here
     this.setState({persons: persons})
   }
+
+  loginHandler = () => {
+    this.setState({authenticated: true});
+  }
   
   render (){
     console.log("[App.js] render")
@@ -125,7 +131,9 @@ class App extends Component {
           <Persons 
             persons = {this.state.persons}
             clickdel = {this.deletePersonsHandler}
-            changehand = {this.nameChangedHandler}/>
+            changehand = {this.nameChangedHandler}
+            isAuthenticate = {this.state.authenticated}/>
+            
           {/**{this.state.persons.map((persons, index) => {
             return <Person 
             click = {() => {this.deletePersonsHandler(index)}}
@@ -156,13 +164,18 @@ class App extends Component {
         <button className={classes.Button} type="text" onClick={()=> {this.setState({
           showcock:false
         })}}>cleanupWorkWithuseEffect</button>
-        {this.state.showcock ?(<Cockpit 
-        title = {this.props.appTitle}
-        clicked = {this.togglePersonsHandler}
-        showname = {this.state.showname}
-        personsLength = {this.state.persons.length}/>) : null
-        }
+        <AuthContext.Provider 
+        value={{authenticated: this.state.authenticated,
+        login: this.loginHandler}}>
+          {this.state.showcock ?
+          (<Cockpit 
+          title = {this.props.appTitle}
+          clicked = {this.togglePersonsHandler}
+          showname = {this.state.showname}
+          personsLength = {this.state.persons.length}
+          />) : null}
         {myperson}
+        </AuthContext.Provider>
       </Aux>
       // </WithClass>
     
