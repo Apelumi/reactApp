@@ -1,5 +1,8 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types"
+
 import Aux from "../../../hoc/Aux";
+import withClass from "../../../hoc/withClass";
 import classes from "./Person.css";
 /** import styled from "styled-components"; 
 
@@ -15,6 +18,14 @@ const StyleDiv = styled.div`
             width: 450px;
         }` */
 class Person extends Component {
+    constructor(props){
+        super(props)
+        this.inputElementRef = React.createRef()
+    }
+    componentDidMount(){
+        // this.inputElement.focus()
+        this.inputElementRef.current.focus();
+    }
     render() {
         console.log("[App.js] rendering...");
         return (
@@ -24,7 +35,11 @@ class Person extends Component {
                 <p onClick={this.props.click}>I'm a {this.props.name} and i'm {this.props.age}years old</p>
                 <p>{this.props.children}</p>
                 {/** this is two way binding */}
-                <input type="text" 
+                <input type="text"
+                //this is the first way to go about passing refs 
+                //ref={(inputEl) => {this.inputElement = inputEl}}
+                //this is the second way to go about passing refs 
+                ref={this.inputElementRef}
                 onChange={this.props.changed} 
                 value={this.props.name}/>
             </Aux>
@@ -53,4 +68,13 @@ class Person extends Component {
         //</div>
     ) 
 } */
-export default Person;
+
+//field data types and properties type settings
+Person.propTypes = {
+    click: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func
+};
+
+export default withClass(Person, classes.Person);

@@ -9,6 +9,7 @@
   padding: 8px;
   cursor: pointer;
   color: beige;
+  font-size: x-small;
 }
 
 .Button:hover {

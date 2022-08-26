@@ -1,27 +1,27 @@
-import React, {PureComponent} from "react";
+import React, {Component} from "react";
 import Person from './Person/Person'
 
 //this code is converted to class component 
 //because of the lifecycle components hooks when updating at props changes
-class Persons extends PureComponent {
+class Persons extends Component {
   /** static getDerivedStateFromProps(props, state){
     console.log("[Persons.js] getDerivedStateFromProps");
     return state;
   } */
 
-  // shouldComponentUpdate(nextProps, nextState){
-  //   console.log("[Persons.js] shouldComponentUpdate");
-  //   //this below code check is to check for performance when nothing in the persons.js gets touched
-  //   if(
-  //     nextProps.persons !== this.props.persons ||
-  //     nextProps.changehand !== this.props.changehand ||
-  //     nextProps.clickdel !== this.props.clickdel
-  //     ){
-  //     return true;
-  //   } else{
-  //     return false;
-  //   }
-  // }
+  shouldComponentUpdate(nextProps, nextState){
+    console.log("[Persons.js] shouldComponentUpdate");
+    //this below code check is to check for performance when nothing in the persons.js gets touched
+    if(
+      nextProps.persons !== this.props.persons ||
+      nextProps.changehand !== this.props.changehand ||
+      nextProps.clickdel !== this.props.clickdel
+      ){
+      return true;
+    } else{
+      return false;
+    }
+  }
 
   getSnapshotBeforeUpdate(prevProps, prevState){
     console.log("[Persons.js] getSnapshotBeforeUpdate");

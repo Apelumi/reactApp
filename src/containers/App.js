@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Aux';
 
 /** const StyledButton = styled.button`
     background-color: ${props => props.anyprop ? 'red': 'yellow'};
@@ -34,6 +35,7 @@ class App extends Component {
     otherstate : "some other state",
     showname: false,
     showcock: true,
+    changeCounter: 0
   }
 
   //getDerivedStateFromProps(props, state)
@@ -79,7 +81,13 @@ class App extends Component {
     newperson[personIndex] = person
 
 
-    this.setState({persons: newperson})
+    this.setState((prevState, props) => {
+      return {
+        persons: newperson,
+        changeCounter: prevState.changeCounter++ //ths allows the rendering the actual state correctly
+        //this is actually good for setting states that actually depend on your old state
+      }
+    })
   }
 
   togglePersonsHandler = () => {
@@ -143,7 +151,8 @@ class App extends Component {
 
 
     return (
-      <WithClass classes={classes.App}>
+      // <WithClass classes={classes.App}>
+      <Aux>
         <button className={classes.Button} type="text" onClick={()=> {this.setState({
           showcock:false
         })}}>cleanupWorkWithuseEffect</button>
@@ -154,8 +163,8 @@ class App extends Component {
         personsLength = {this.state.persons.length}/>) : null
         }
         {myperson}
-        
-      </WithClass>
+      </Aux>
+      // </WithClass>
     
     );
     /**properties means the atrributes we had to the function component
@@ -164,7 +173,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
 
 
 

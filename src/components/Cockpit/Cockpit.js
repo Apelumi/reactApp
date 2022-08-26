@@ -1,7 +1,9 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import classes from "./cockpit.css";
 
 const Cockpit = (props) => {
+  const toggleBtnRef = useRef(null);
+
   useEffect(()=> {
     console.log("[Cockpit.js] this is useEffect react hook and this is not a lifecycle hook");
     //some http request
@@ -9,6 +11,7 @@ const Cockpit = (props) => {
     const timer = setTimeout(()=> {
       alert("your data is saved to the cloud")
     }, 1000);
+    toggleBtnRef.current.click();
     //you can do a clean up work here and this function will run after every rendered cycle
     return () => {
       clearTimeout(timer);
@@ -44,7 +47,7 @@ const Cockpit = (props) => {
     <div className={classes.Cockpit}>
       <h1>{props.title}</h1>
       <p className={Textclass.join( " " )}>This is really working!!!</p>
-      <button className={btnClass} 
+      <button ref={toggleBtnRef} className={btnClass} 
       onClick={props.clicked}>Toggle persons</button>
     </div>
   );
