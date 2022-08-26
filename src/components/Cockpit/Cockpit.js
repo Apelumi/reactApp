@@ -1,10 +1,12 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useContext} from "react";
 import classes from "./cockpit.css";
 import AuthContext from "../../context/auth-context";
 
 const Cockpit = (props) => {
   const toggleBtnRef = useRef(null);
+  const authContext = useContext(AuthContext);
 
+  console.log(authContext.authenticated);
   useEffect(()=> {
     console.log("[Cockpit.js] this is useEffect react hook and this is not a lifecycle hook");
     //some http request
@@ -50,9 +52,8 @@ const Cockpit = (props) => {
       <p className={Textclass.join( " " )}>This is really working!!!</p>
       <button ref={toggleBtnRef} className={btnClass} 
       onClick={props.clicked}>Toggle persons</button>
-      <AuthContext.Consumer>
-        {context => <button onClick={context.login}>LogIn</button>}
-      </AuthContext.Consumer>
+      
+      <button onClick={authContext.login}>LogIn</button>
     </div>
   );
 };
